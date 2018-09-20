@@ -5,7 +5,7 @@ Author: GSS
 Mail: gao.hillhill@gmail.com
 Description: 
 Created Time: 7/15/2016 11:47:39 AM
-Last modified: Wed Sep 19 22:29:03 2018
+Last modified: Thu Sep 20 10:57:07 2018
 """
 
 #defaut setting for scientific caculation
@@ -25,7 +25,7 @@ import math
 import copy
 
 
-root_path = "/Users/shanshangao/Documents/GitHub/ProtoDUNE_CFG/"
+root_path = "/Users/shanshangao/Documents/GitHub/Gen_PD_CFG/"
 for root, dirs, files in os.walk(root_path):
     break
 
@@ -96,10 +96,10 @@ for ai in range(1,7,1):
                     wr_addr = int(cfgs[i][1],16)
                     if (wr_addr == 0x06 ):
                         cfgs[i][2] = femb_precfgs[3]
-                        cfgs[i][3] = "  "  
-                    elif (wr_addr == 0x0F ):
-                        cfgs[i][2] = femb_precfgs[4]
-                        cfgs[i][3] = "  "  
+                        cfgs[i][3] = " NA "  
+                    #elif (wr_addr == 0x0F ):
+                    #    cfgs[i][2] = femb_precfgs[4]
+                    #    cfgs[i][3] = "  "  
                     elif ( wr_addr in range(0x200, 0x248,1) ):
                         cfgs[i][2] =  hex( int( femb_precfgs[5][wr_addr - 0x200], 16) )
                         cfgs[i][3] =  cfgs[i][2]
@@ -114,7 +114,7 @@ for ai in range(1,7,1):
                 femb_cfgs.append([ai, wi, fi, fw_ver,int(cfg[0]), hex(int(cfg[1],16)), cfg[2],cfg[3],cfg[4],  ] )
 
 
-csvfile =  "/Users/shanshangao/Documents/GitHub/ProtoDUNE_CFG/" + 'ProtoDUNE_SP_FEMBs_Config_rms.csv'
+csvfile =  root_path + 'ProtoDUNE_SP_FEMBs_Config_rms.csv'
     
 with open (csvfile, 'w') as fp:
     for x in femb_cfgs:
